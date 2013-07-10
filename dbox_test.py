@@ -72,7 +72,7 @@ else:
     print 'Just created the destination directory'
     
 SYNC_DIR_META_LIST = {}
-
+#Create a dictionary with the same info as SYNC_DIR_LIST
 for file in SYNC_DIR_META['contents']:
     SYNC_DIR_META_LIST[os.path.split(file['path'])[1]] = file['bytes']
 
@@ -86,7 +86,6 @@ for file in SYNC_DIR_LIST:
             client.file_delete(DEST_DIR + '/' + file)
             client.put_file(DEST_DIR + '/' + file,open(SYNC_DIR + '/' + file))
             print 'Updating ' + file + ' to Dropbox'
-        
         
 print 'Finished copying'    
     
