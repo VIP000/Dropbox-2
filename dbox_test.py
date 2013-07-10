@@ -32,12 +32,9 @@ except IOError:
     raw_input()
     # Next line will fail if the user didn't visit the above URL and hit 'Allow'
     access_token = sess.obtain_access_token(request_token)
-#    # Save the newly created token into a file for further use
-    token_file = open(TOKEN_FILE,'w')
-    token_file.write("%s|%s" % (access_token.key,access_token.secret) )
-    # Really close the file once finished
-finally:
-    token_file.close()
+    # Save the newly created token into a file for further use
+    with open(TOKEN_FILE,'w') as f:
+        f.write("%s|%s" % (access_token.key,access_token.secret))
 
 
 token_file = open(TOKEN_FILE)
